@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Rover from '../Rover/Rover';
+
 import './PlanetGrid.css';
 
 class PlanetGrid extends Component {
@@ -14,7 +16,9 @@ class PlanetGrid extends Component {
             <div className="grid-wrapper">
                 <div className="grid">
                     <div className="cell"></div>
-                    <div className="cell"></div>
+                    <div className="cell">
+                        <Rover/>
+                    </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
                     <div className="cell"></div>
