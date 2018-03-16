@@ -1,0 +1,17 @@
+.grid {
+    display: flex;
+    grid-template-columns: 40px 40px 40px 40px 40px;
+    grid-gap: 5px;
+    background-color: #fff;
+    border: 1px solid #444;
+  }
+  
+  .cell {
+    background-color: teal;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 150%;
+  }
