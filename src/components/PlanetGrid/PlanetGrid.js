@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Rover from '../Rover/Rover';
+import Obstacle from '../Obstacle/Obstacle';
 
 import './PlanetGrid.css';
 
@@ -15,24 +16,35 @@ class PlanetGrid extends Component {
         return (
             <div className="grid-wrapper">
                 <div className="grid">
-                    <div className="cell"></div>
-                    <div className="cell">
-                        <Rover/>
-                    </div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
+                    {   // these are rows
+                        this.props.grid.map(row =>{
+                            // these are columns
+                           return row.map( (cell, index) =>{
+                                if ( cell && cell.type === 'rover') {
+                                    return (
+                                        <div className="cell" key={`key-${index}`} >
+                                            <Rover cardnialDirection={cell.cardinalDir}/>
+                                        </div>
+                                        )
+                                }
+
+                                if ( cell && cell.type === 'obstacle') {
+                                    return (
+                                        <div className="cell" key={`key-${index}`} >
+                                            <Obstacle/>
+                                        </div>
+                                        )
+                                }
+
+
+                                return <div className="cell" key={`key-${index}`}></div>;
+
+                                
+                            })
+                            
+                        })
+                    }
+                    
                 </div>
             </div>
         );
@@ -40,7 +52,9 @@ class PlanetGrid extends Component {
 }
 
 PlanetGrid.propTypes = {
-
+    grid: PropTypes.arrayOf(PropTypes.array).isRequired
 };
 
 export default PlanetGrid;
+
+{/*  */}
