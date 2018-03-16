@@ -1,28 +1,21 @@
+.grid-wrapper {
+  width: 415px;
+  margin: 0 auto;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 100px 100px 100px 100px;
-    grid-gap: 10px;
+    grid-gap: 5px;
     background-color: #fff;
-    /* border: 1px solid #444; */
-
-
-    display: grid;
-    
-    grid-gap: 10px;
-    background-color: #fff;
-    color: #444;
+    margin: 0 auto;
+    width: auto;
   }
   
   .cell {
     background-color: teal;
-    border: 1px solid #444;
+    /* border: 1px solid #444; */
     color: #fff;
-    padding: 200px;
-    /* font-size: 150%; */
-
-    background-color: #444;
-    color: #fff;
-    /* max-height: 100px; */
     padding: 50px;
-    font-size: 150%;
+
   }
