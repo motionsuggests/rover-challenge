@@ -28,15 +28,6 @@ class PlanetGrid extends Component {
                 <div className="cell"></div>
                 <div className="cell"></div>
                 <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
-                <div className="cell"></div>
             </div>
         );
     }
