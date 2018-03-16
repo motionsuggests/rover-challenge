@@ -1,18 +1,30 @@
 class Sequencer {
     
-    constructor(sequence) {
-
+    constructor() {
+        this.sequence = null;
+        this.currentStep = null;
+    }
+    
+    start(sequence) {
         this.sequence = sequence;
         this.currentStep = 0;
     }
-    
-    // Used to set start cardinalDirection on app init
-    start(cardinalDirection, compassArr) {
-        // takes cardinalDirection and compassArr of [n, e, s, w]
-        // returns compassArr with cardinalDirection at index 0
+
+    next() {
+        let nextStep = this.currentStep += 1;
+
+        if (nextStep >= this.sequence.length ) {
+             return 'Sequence Complete';
+         }
+
+        this.currentStep = nextStep;
+
+        return this.currentStep;
     }
 
-    
+    get getStep(){
+        return this.sequence[this.currentStep];
+    }
     
   }
 
