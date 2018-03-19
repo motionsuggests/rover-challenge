@@ -19,7 +19,7 @@ class PlanetGrid extends Component {
                                 if ( cell && cell.type === 'rover') {
                                     return (
                                         <div className="cell" key={`key-${index}`} >
-                                            <Rover cardnialDirection={cell.cardinalDir}/>
+                                            <Rover cardnialDirection={cell.compass[0]}/>
                                         </div>
                                         )
                                 }

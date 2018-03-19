@@ -15,7 +15,7 @@ const sequence = ['l', 'f', 'l', 'f', 'f', 'f', 'f', 'r', 'b', 'b', 'b'];
 
 const initialRoverCoords = {x: 1, y: 1};
 
-const initialCardinalDir = 's';
+const initialCardinalDir = 'n';
 
 const compassArr = ['n', 'e', 's', 'w'];
 
@@ -23,9 +23,6 @@ const obstacles = [
   { coords: randomCoords(gridDimensions), type: 'obstacle'},
   { coords: randomCoords(gridDimensions), type: 'obstacle'},
 ]
-
-
-
 
 class App extends Component {
 
@@ -63,31 +60,51 @@ class App extends Component {
   
   componentDidMount() {
     // start sequencer
-    if (this.timer) {
-      clearTimeout(this.timer);
-    }
     this.sequencer.start(sequence);
-    // this.step();
+    
+    this.timer = setTimeout(() => {
+      this.step();
+    }, 2000);
   }
 
   step() {
-    let nextStep = this.sequencer.getStep;
-    console.log(nextStep);
     // getStep from sequencer
-    
-    // pass step and rover to controller
-    let _rover = this.roverController.executeStep(nextStep, this.rover);
-    
-    let _grid = this.gridController.placeItem(_rover, this.state.grid);
+    let nextStep = this.sequencer.getStep;
+    console.log(nextStep)
 
-    this.rover = {..._rover};
+    if (nextStep) {
+      // pass step and rover to controller to update rover coords
+      let _rover = this.roverController.executeStep(nextStep, this.rover, gridDimensions);
 
-    this.setState({grid: _grid})
+      // pass last rover coords and new rover coords to place rover
+      let _grid = this.gridController.updateRover(_rover, this.rover.coords, this.state.grid.slice());
+
+        if (_grid) {
+          this.rover = _rover;
+          this.setState({grid: _grid})
     
-    this.timer = setTimeout(() => {
-      this.sequencer.next();
-      this.step();
-    }, 1000);
+          this.timer = setTimeout(() => {
+            this.sequencer.next();
+            this.step();
+          }, 2000);
+    
+        } else {
+
+          this.stop('Cell Already Occupied. Can not execute command. Sequence aborted')
+        }
+
+    } else {
+      this.stop('Sequence Complete');
+    }
+    
+  }
+
+  stop = (msg) => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    
+    alert(msg);
   }
 
   

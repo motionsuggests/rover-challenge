@@ -20,15 +20,30 @@ class GridController {
     }
 
     placeItem(item, grid) {
-
-        
         let {x,y} = item.coords;
-        if ( ! grid[x][y] ) {
-            grid[x][y] = item;
+        if ( ! grid[y][x] ) {
+            grid[y][x] = item;
         } else {
-            console.log('Cell Already Occupied ')
+            console.log('Can Not Place Item Cell Already Occupied ')
         }
         return grid;
+    }
+
+    updateRover(rover, lastCoords, grid) {
+        let _grid = grid.slice();
+        
+        // check if cell is occupied by obstacle
+        let isOccupied = grid[rover.coords.y][rover.coords.x] && grid[rover.coords.y][rover.coords.x].type === 'obstacle' ;
+        
+        if (!isOccupied) {
+            _grid[lastCoords.y][lastCoords.x] = false;    
+            _grid[rover.coords.y][rover.coords.x] = rover;
+            return _grid;
+        }
+        return false;
+        
+
+        
     }
     
   }

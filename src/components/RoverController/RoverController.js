@@ -43,49 +43,84 @@ class RoverControler {
         let _coords = {...coords};
         switch(compass[0]) {
             case 'n':
-                _coords.y = _coords.y - 1;
+                _coords.y -= 1;
+                break;
             case 'e':
-                _coords.x = _coords.x + 1;
+                _coords.x = coords.x + 1;
+                break;
             case 's':
-                _coords.y = _coords.y + 1;
+                _coords.y = coords.y + 1;
+                break;
             case 'w':
-                _coords.x = _coords.x - 1;   
+                _coords.x = coords.x - 1;   
+                break;
         }
 
         return _coords;
     }
 
-    moveBackward(compass, coords) {
+    moveBackward(direction, coords) {
         // takes compass and coords 
         // return new coords
         let _coords = {...coords};
-        switch(compass[0]) {
+        switch(direction) {
             case 'n':
-                _coords.y = _coords.y + 1;
+                _coords.y = coords.y + 1;
+                break;
             case 'e':
-                _coords.x = _coords.x - 1;
+                _coords.x = coords.x - 1;
+                break;
             case 's':
-                _coords.y = _coords.y - 1;
+                _coords.y = coords.y - 1;
+                break;
             case 'w':
-                _coords.x = _coords.x + 1;   
+                _coords.x = coords.x + 1;
+                break;
         }
 
         return _coords;
     }
 
-    executeStep(step, rover) {
-        let _rover = { ...rover };
+    transPortCoords(coords, gridDimensions) {
+        // if new cords are greater than grid dimensions transport to new coords
+        var _coords = {...coords};
+
+        if ( _coords.x >= gridDimensions) {
+            _coords.x = 0;
+        }
+        if (_coords.x < 0 ){
+            _coords.x = gridDimensions-1;
+        }
+        if (_coords.y >= gridDimensions ) {
+            _coords.y = 0;
+        }
+        if (_coords.y < 0 ){
+            _coords.y = gridDimensions-1;
+        }
+        return _coords;
+        
+    }
+
+    executeStep(step, rover, gridDimensions) {
+        let _rover = {...rover};
+        let direction = rover.compass[0];
         
         switch(step){
             case 'r':
-                _rover.compass = this.turnRover(step, _rover.compass);
+                _rover.compass = this.turnRover(step, rover.compass);
+                break;
             case 'l':
-                _rover.compass = this.turnRover(step, _rover.compass);
+                _rover.compass = this.turnRover(step, rover.compass);
+                break;
             case 'f':
-                _rover.coords = this.moveForward(_rover.compass, _rover.coords);
+                _rover.coords = this.moveForward(direction, rover.coords);
+                break;
             case 'b':
-                _rover.coords = this.moveBackward(_rover.compass, _rover.coords);
+                _rover.coords = this.moveBackward(direction, rover.coords);
+                break;
         }
+
+        _rover.coords = this.transPortCoords(_rover.coords, gridDimensions);
         
         return _rover;
         
