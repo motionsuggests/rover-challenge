@@ -18,10 +18,6 @@ class Sequencer {
     next() {
         let nextStep = this.currentStep += 1;
 
-        if (nextStep >= this.sequence.length ) {
-             return 'Sequence Complete';
-         }
-
         this.currentStep = nextStep;
 
         return this.currentStep;

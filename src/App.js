@@ -70,7 +70,7 @@ class App extends Component {
   step() {
     // getStep from sequencer
     let nextStep = this.sequencer.getStep;
-    console.log(nextStep)
+    
 
     if (nextStep) {
       // pass step and rover to controller to update rover coords
