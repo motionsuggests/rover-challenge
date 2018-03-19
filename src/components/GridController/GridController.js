@@ -24,7 +24,7 @@ class GridController {
         if ( ! grid[y][x] ) {
             grid[y][x] = item;
         } else {
-            console.log('Can Not Place Item Cell Already Occupied ')
+            console.log('Can Not Place Item Cell Already Occupied ');
         }
         return grid;
     }
