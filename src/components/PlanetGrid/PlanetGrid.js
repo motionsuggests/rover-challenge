@@ -8,10 +8,6 @@ import './PlanetGrid.css';
 
 class PlanetGrid extends Component {
     
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="grid-wrapper">
@@ -56,5 +52,3 @@ PlanetGrid.propTypes = {
 };
 
 export default PlanetGrid;
-
-{/*  */}

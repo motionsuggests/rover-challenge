@@ -10,6 +10,11 @@ class Sequencer {
         this.currentStep = 0;
     }
 
+    stop() {
+        this.sequence = null;
+        this.currentStep = null;
+    }
+
     next() {
         let nextStep = this.currentStep += 1;
 

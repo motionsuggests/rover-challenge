@@ -1,10 +1,4 @@
 class GridController {
-    
-    constructor(dimensions) {
-
-        this.grid = this.createGrid(dimensions);
-        
-    }
 
     createGrid(dimensions) {
         let i, grid = new Array(dimensions);
@@ -25,22 +19,17 @@ class GridController {
         return row;
     }
 
-    placeItem(item) {
-        let {x,y} = item.cords;
-        if ( ! this.grid[x][y] ) {
-            this.grid[x][y] = item;
+    placeItem(item, grid) {
+
+        
+        let {x,y} = item.coords;
+        if ( ! grid[x][y] ) {
+            grid[x][y] = item;
         } else {
             console.log('Cell Already Occupied ')
         }
-        
-        
+        return grid;
     }
-
-    get getGrid() {
-        return this.grid;
-    }
-
-    
     
   }
 
